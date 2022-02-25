@@ -1,4 +1,4 @@
-import { VuexModule, Mutation, Action } from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import axios from 'axios'
 
 interface PostEntity {
@@ -8,10 +8,11 @@ interface PostEntity {
     body: string,
 }
 
+@Module({ namespaced: true })
 export default class Testowy extends VuexModule {
     posts: PostEntity[] = []
 
-    get postsArray() : PostEntity[] {
+    get postsArray(): PostEntity[] {
         return this.posts;
     }
 

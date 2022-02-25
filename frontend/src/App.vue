@@ -13,10 +13,6 @@ import Inject from "@/testowe/Inject";
 import TYPES from "./testowe/types";
 import ICoreService from "./testowe/icore.service";
 
-interface IAppData {
-  number: number;
-}
-
 @Options({
   name: "App",
 })
@@ -31,6 +27,8 @@ export default class App extends Vue {
 
   mounted(): void {
     console.log(this.coreService.getFile());
+    console.log(this);
+    
   }
 }
 </script>

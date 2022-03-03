@@ -11,29 +11,20 @@ script.
 import { Vue, Options } from "vue-class-component";
 import { namespace } from "s-vuex-class";
 import { TYPES } from "@/inversify";
+import { Inject } from 'inversify-props'
 import { ICoreService } from "@/services";
-import { Inject } from "inversify-props";
 
-const Testowy = namespace("Testowy");
+const Tutorials = namespace("Tutorials");
 
 @Options({
-  name: "App",
+  name: "Tutorial",
 })
-export default class App extends Vue {
+export default class Tutorial extends Vue {
   @Inject(TYPES.CoreService) private coreService!: ICoreService;
 
-  @Testowy.State public posts!: string;
-  @Testowy.Action public testAction!: () => void;
-
-  private number = 0;
-
-  increase(): void {
-    this.number++;
-  }
-
-  mounted() {
-    this.testAction();
-  }
+  @Tutorials.State public title!: string;
+  @Tutorials.Getter public titleUpperCase!: string;
+  @Tutorials.Action public updateTitle!: (newTitle: string) => void;
 }
 </script>
 

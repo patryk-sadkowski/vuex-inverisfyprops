@@ -1,16 +1,11 @@
-import { Container } from "inversify";
-import CoreService from "./testowe/core.service";
-import ICoreService from "./testowe/icore.service";
-import TYPES from "./testowe/types";
-
-
-
-export let container: Container;
+import { Container, container } from "inversify-props";
+import { coreService, ICoreService } from "@/services";
+import { TYPES } from '@/inversify'
 
 export function containerBuild(): Container {
-    container = new Container()
 
-    container.bind<ICoreService>(TYPES.CoreService).to(CoreService).inSingletonScope();
-
+    container.addSingleton<ICoreService>(coreService, TYPES.CoreService);
+    
+    
     return container
 }

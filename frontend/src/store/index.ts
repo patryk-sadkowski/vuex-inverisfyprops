@@ -1,8 +1,10 @@
 import { createStore } from 'vuex'
-import Tutorials from './modules/tutorial.module'
+import Tutorial from './modules/Tutorial.module';
 
-export default createStore({
+const store = createStore({
   modules: {
-    Tutorials
+    Tutorial,
   }
-})
+});
+
+export default store;

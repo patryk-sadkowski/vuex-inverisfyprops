@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Hello Wordld</h1>
-    <h2>{{ number }}</h2>
-    <button @click="increase">+</button>
+    <h1>Hello World</h1>
+    <h2>{{ titleUpperCase }}</h2>
+    <button @click="changeTitle">click</button>
   </div>
 </template>
 
@@ -10,29 +10,26 @@ script.
 <script lang="ts">
 import { Vue, Options } from "vue-class-component";
 import { namespace } from "s-vuex-class";
-import { TYPES } from "@/inversify";
-import { ICoreService } from "@/services";
 import { Inject } from "inversify-props";
+import { TYPES } from "./main.containers";
+import IKanyeWestService from "./services/kanyeWestService/IKanyeWest.service";
+import KanyeQuote from "./models/KanyeQuote";
 
-const Testowy = namespace("Testowy");
+const Tutorial = namespace("Tutorial");
 
 @Options({
   name: "App",
 })
 export default class App extends Vue {
-  @Inject(TYPES.CoreService) private coreService!: ICoreService;
+  @Tutorial.State
+  public title!: string;
+  @Tutorial.Getter
+  public titleUpperCase!: string;
+  @Tutorial.Action
+  public updateTitle!: (newTitle: string) => void;
 
-  @Testowy.State public posts!: string;
-  @Testowy.Action public testAction!: () => void;
-
-  private number = 0;
-
-  increase(): void {
-    this.number++;
-  }
-
-  mounted() {
-    this.testAction();
+  changeTitle():void {
+    this.updateTitle('dsa');
   }
 }
 </script>

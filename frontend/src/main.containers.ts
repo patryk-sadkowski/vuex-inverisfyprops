@@ -1,11 +1,22 @@
 import { Container, container } from "inversify-props";
-import { coreService, ICoreService } from "@/services";
-import { TYPES } from '@/inversify'
+import IKanyeWestService from "./services/kanyeWestService/IKanyeWest.service";
+import KanyeWestService from "./services/kanyeWestService/KanyeWest.service";
 
-export function containerBuild(): Container {
+function containerBuild(): Container {
 
-    container.addSingleton<ICoreService>(coreService, TYPES.CoreService);
+    container.addSingleton<IKanyeWestService>(KanyeWestService, TYPES.KanyeWestService);
     
     
     return container
 }
+
+const TYPES = {
+    KanyeWestService: Symbol.for("kanyeWestService")
+}
+
+
+export {
+    containerBuild,
+    TYPES
+};
+
